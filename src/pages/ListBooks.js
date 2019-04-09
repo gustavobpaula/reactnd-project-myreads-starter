@@ -15,26 +15,23 @@ class ListBooks extends Component {
 		});
 	}
 
-	changeShelf(book, shelf) {
-		/* BooksAPI.update(book, shelf);
+	changeShelf = (book, shelf) => {
+
+		BooksAPI.update(book, shelf);
 		this.setState((currentState) => {
 			const newState = currentState.books.filter(currentBook => currentBook.id !== book.id);
-			console.log(newState);
 			book.shelf = shelf;
-			return { books: newState.push(book) }
-		}) */
+			return { books: newState.concat(book) }
+		});
+	}
 
-		/* this.setState((state) => {
-			return { books: state.books };
-		}); */
-
-		console.log('book, shelf', book, shelf)
-		console.log('foooooooi');
-
+	filterShelf = (shelf) => {
+		return this.state.books.length > 0 && this.state.books.filter(book => {
+			return book.shelf === shelf;
+		})
 	}
 
 	render() {
-		console.log(this.state.books);
 		return (
 			<div className="list-books">
 				<div className="list-books-title">
@@ -42,27 +39,21 @@ class ListBooks extends Component {
 				</div>
 				<div className="list-books-content">
 					<div>
-						<Shelf title='Currently Reading' changeShelf={this.changeShelf} books={this.state.books.filter(book => {
-							return book.shelf === 'currentlyReading'
-						})} />
+						<Shelf title='Currently Reading' changeShelf={this.changeShelf} books={this.filterShelf('currentlyReading')} />
 
-						<Shelf title='Want to Read' changeShelf={this.changeShelf} books={this.state.books.filter(book => {
-							return book.shelf === 'wantToRead'
-						})} />
+						<Shelf title='Want to Read' changeShelf={this.changeShelf} books={this.filterShelf('wantToRead')} />
 
-						<Shelf title='Read' changeShelf={this.changeShelf} books={this.state.books.filter(book => {
-							return book.shelf === 'read'
-						})} />
+						<Shelf title='Read' changeShelf={this.changeShelf} books={this.filterShelf('read')} />
 					</div>
 				</div>
 				<div className="open-search">
-					<Link to="/search">Add a book</Link>
+				<Link to="/search">Add a book</Link>
 				</div>
 			</div>
-		)
+			)
+		}
+
+
 	}
 
-
-}
-
-export default ListBooks;
+	export default ListBooks;
