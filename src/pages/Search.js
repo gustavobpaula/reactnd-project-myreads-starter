@@ -12,12 +12,28 @@ class Search extends Component {
 		books: []
 	}
 
+	/**
+	 * Call when component did mount
+	 * and get all user books and set state
+	 *
+	 * @memberof Search
+	 */
 	componentDidMount() {
 		BooksAPI.getAll().then(myBooks => {
 			this.setState({ myBooks });
 		});
 	}
 
+	/**
+	 * Update term state when inout change
+	 * Also takes from the API the books that combine with the term,
+	 * Compare with myBooks state and merge found results
+	 * And finally, set the state books with the result
+	 *
+	 * @param {Object} event Input event handle
+	 *
+	 * @memberof Search
+	 */
 	handleChange = (event) => {
 
 		const newTerm = event.target.value.trim();
@@ -33,10 +49,24 @@ class Search extends Component {
 
 	}
 
+	/**
+	 * Change shelf of book
+	 *
+	 * @param {Object} event Object of book
+	 * @param {String} shelf Name of the shelf that the book will be moved
+	 *
+	 * @memberof Search
+	 */
 	changeShelf = (book, shelf) => {
 		BooksAPI.update(book, shelf);
 	}
 
+	/**
+	 * Render
+	 *
+	 * @returns
+	 * @memberof Search
+	 */
 	render() {
 
 		return (
