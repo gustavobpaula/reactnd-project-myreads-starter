@@ -6,6 +6,12 @@ import ListBooks from './pages/ListBooks';
 
 class BooksApp extends Component {
 
+	/**
+	 * Render
+	 *
+	 * @returns
+	 * @memberof BooksApp
+	 */
 	render() {
 		return (
 			<div className="app">

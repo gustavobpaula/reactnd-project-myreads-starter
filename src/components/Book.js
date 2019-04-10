@@ -21,6 +21,12 @@ class Book extends Component {
 			));
 		}
 
+		/**
+		 * Select to change Shelf
+		 *
+		 * @param {Object} event Select event handle
+		 * @memberof Book
+		 */
 		handleChange = (event) => {
 			this.props.changeShelf(this.props.book, event.target.value);
 		}
@@ -32,24 +38,26 @@ class Book extends Component {
 		 * @memberof Book
 		 */
 		render() {
-			return (
-				<div className="book">
-					<div className="book-top">
-						<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
-						<div className="book-shelf-changer">
-							<select defaultValue={this.props.book.shelf} onChange={this.handleChange}>
-								<option value="move" disabled>Move to...</option>
-								{this.selectOptions()}
-							</select>
+			try {
+				return (
+					<div className="book">
+						<div className="book-top">
+							<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
+							<div className="book-shelf-changer">
+								<select defaultValue={this.props.book.shelf || 'none'} onChange={this.handleChange}>
+									<option value="move" disabled>Move to...</option>
+									{this.selectOptions()}
+								</select>
+							</div>
 						</div>
+						<div className="book-title">{this.props.book.title}</div>
+						<div className="book-authors">{this.props.book.authors && this.props.book.authors[0]}</div>
 					</div>
-					<div className="book-title">{this.props.book.title}</div>
-					<div className="book-authors">{this.props.book.authors[0]}</div>
-				</div>
-			)
+				)
+			} catch (error) {
+				return null
+			}
 		}
-
-
 }
 
 export default Book;

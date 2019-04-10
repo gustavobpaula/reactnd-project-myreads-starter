@@ -9,12 +9,26 @@ class ListBooks extends Component {
 		books: []
 	}
 
+	/**
+	 * Call when component did mount
+	 * and get all user books and set state
+	 *
+	 * @memberof ListBooks
+	 */
 	componentDidMount() {
 		BooksAPI.getAll().then( books => {
 			this.setState({	books });
 		});
 	}
 
+	/**
+	 * Change shelf of book
+	 *
+	 * @param {Object} book Object of book
+	 * @param {String} shelf Name of the shelf that the book will be moved
+	 *
+	 * @memberof ListBooks
+	 */
 	changeShelf = (book, shelf) => {
 
 		BooksAPI.update(book, shelf);
@@ -25,12 +39,25 @@ class ListBooks extends Component {
 		});
 	}
 
+	/**
+	 * Filter books by shelf name
+	 *
+	 * @param {String} shelf Name of the shelf
+	 *
+	 * @memberof ListBooks
+	 */
 	filterShelf = (shelf) => {
 		return this.state.books.length > 0 && this.state.books.filter(book => {
 			return book.shelf === shelf;
 		})
 	}
 
+	/**
+	 * Render
+	 *
+	 * @returns
+	 * @memberof ListBooks
+	 */
 	render() {
 		return (
 			<div className="list-books">
