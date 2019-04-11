@@ -47,9 +47,9 @@ class ListBooks extends Component {
 	 * @memberof ListBooks
 	 */
 	filterShelf = (shelf) => {
-		return this.state.books.length > 0 && this.state.books.filter(book => {
+		return (this.state.books.length > 0 && this.state.books.filter(book => {
 			return book.shelf === shelf;
-		})
+		})) || []
 	}
 
 	/**

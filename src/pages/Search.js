@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import sortBy from 'sort-by'
 import * as BooksAPI from '../BooksAPI'
-import Shelf from '../components/Shelf';
+import Shelf from '../components/Shelf'
+import { DebounceInput } from 'react-debounce-input'
 
 class Search extends Component {
 
@@ -36,16 +37,19 @@ class Search extends Component {
 	 */
 	handleChange = (event) => {
 
-		const newTerm = event.target.value.trim();
+		const newTerm = event.target.value;
 
-		this.setState({term: newTerm})
+		 this.setState({term: newTerm});
 
-		if (!newTerm) return;
+		if (!newTerm.trim()) {
+			this.setState({ books: [] });
+			return;
+		}
 
-		BooksAPI.search(newTerm).then(books => {
+		BooksAPI.search(newTerm.trim()).then(books => {
 			books = books && books.length > 0 ? books.map(obj => this.state.myBooks.find(o => o.id === obj.id) || obj) : [];
 			this.setState({books: books.sort(sortBy('title'))})
-		})
+		});
 
 	}
 
@@ -74,7 +78,7 @@ class Search extends Component {
 				<div className="search-books-bar">
 					<Link to="/" className="close-search">Close</Link>
 					<div className="search-books-input-wrapper">
-						<input type="text" onChange={this.handleChange} placeholder="Search by title or author" value={this.state.term}/>
+						<DebounceInput debounceTimeout={300} type="text" onChange={this.handleChange} placeholder="Search by title or author" value={this.state.term}/>
 
 					</div>
 				</div>
