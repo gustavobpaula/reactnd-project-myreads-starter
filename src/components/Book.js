@@ -51,7 +51,7 @@ class Book extends Component {
 								</select>
 							</div>
 						</div>
-						<div className="book-title">{this.props.book.title}</div>
+						<div className="book-title">{this.props.book.title ? this.props.book.title : 'No Title'}</div>
 						<div className="book-authors">{this.props.book.authors && this.props.book.authors.join(', ')}</div>
 					</div>
 				)

@@ -1,5 +1,9 @@
 # MyReads Project
 ---
+
+Uma estante de livros onde você pode buscar pelo tema desejado e adiciona-los em uma das 3 prateleiras pessoais: Gostaria de ler, lendo atualmente e lidos.
+Caso entre em alguma página que não exista, uma página de 404 é apresentada.
+
 ## Clone repository
 ```shell
 git clone https://github.com/gustavobpaula/reactnd-project-myreads-starter.git
