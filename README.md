@@ -1,7 +1,7 @@
 # MyReads Project
 
-Uma estante de livros onde você pode buscar pelo tema desejado e adiciona-los em uma das 3 prateleiras pessoais: Gostaria de ler, lendo atualmente e lidos.
-Caso entre em alguma página que não exista, uma página de 404 é apresentada.
+A bookshelf where you can search for the desired theme and add them to one of the 3 personal shelves: I would like to read, read and read today.
+If you enter a page that does not exist, a 404 page is displayed.
 
 ---
 
