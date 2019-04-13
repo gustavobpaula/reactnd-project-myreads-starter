@@ -1,6 +1,6 @@
 # MyReads Project
 
-A bookshelf where you can search for the desired theme and add them to one of the 3 personal shelves: I would like to read, read and read today.
+A bookshelf where you can search for the desired theme and add them to one of the 3 personal shelves: Currently Reading, Want to Read and Read.
 If you enter a page that does not exist, a 404 page is displayed.
 
 ---
